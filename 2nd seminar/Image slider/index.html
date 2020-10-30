@@ -53,14 +53,14 @@
       </div>
       <script>
             const SHOWING_CLASS = "showing"
-            const firstSlide = document.querySelector(".slider__item:first-child")
+            const firstSlide = document.querySelector(".slider__item:first-child")//querySelector는 .slider__item:first-child 를 가진 태그=첫번째를 반환
             function slide(){
-                  const currentSlide = document.querySelector(`.${SHOWING_CLASS}`);
+                  const currentSlide = document.querySelector(`.${SHOWING_CLASS}`);//querySelector는 파라미터의 값을 가진 태그를 반환
                   if(currentSlide){
                         currentSlide.classList.remove(SHOWING_CLASS);
-                        const nextSlide = currentSlide.nextElementSibling;//그 다음 첫번째 sibiling 리턴함 그렇지 않을 경우 null 리턴
-                        if(nextSlide){
-                              nextSlide.classList.add(SHOWING_CLASS);
+                        const nextSlide = currentSlide.nextElementSibling;//그 다음 첫번째 sibiling 리턴함 그렇지 않을 경우 null 리턴 댑스가 같은 애들이 sibiling
+                        if(nextSlide){ //만약 형제가 있으면
+                              nextSlide.classList.add(SHOWING_CLASS); //추가한다
                         } else {
                               firstSlide.classList.add(SHOWING_CLASS);
                         }
@@ -68,12 +68,17 @@
                         firstSlide.classList.add(SHOWING_CLASS); //([] == 0)이 true
                   }
             }
-            const silderItems = document.querySelectorAll(".slider__item");
-            for(let i = 0 ; i < silderItems.length; i++) {
-                  silderItems[i].addEventListener("click", () => slide())
+            const sliderItems = document.querySelectorAll(".slider__item");//모든 클래스아이템을 가져와= 배열로 존재하도록
+            for(let i = 0 ; i < sliderItems.length; i++) { // 배열이 되어서 for문에서 사용가능 i는 0부터 4까지 1씩 더해질거야 =돌아다닐거야
+                  sliderItems[i].addEventListener("click", () => slide()) //silderItems 5개 엘리먼트인데 [i]를 통해서 하나만 접근 할 수 있게 한다 click도 원래 있는거. 따로지정을 안해도댐
             }
+            /*
+            const arr = [1,2,3]
+            console.log(arr[0]) //이게 arr이라는 배열의 0번째 요소 =1 을 가져온다.
+            */
             function touchSlide (element) {
                   currentSlide
+
             }
             slide();
             setInterval(slide, 2000) //0초마다해당function 불러온다 (2sec = 2000)
